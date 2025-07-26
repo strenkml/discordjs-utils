@@ -1,0 +1,55 @@
+{
+  "name": "discordjs-utils",
+  "version": "1.0.0",
+  "description": "Utils that I reuse a lot across my Discord Bots",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "build:clean": "rm -rf dist; pnpm run build",
+    "dev": "tsup --watch",
+    "update": "pnpm exec npm-check -u",
+    "depcheck": "pnpm exec npm-check",
+    "docs": "typedoc"
+  },
+  "keywords": [
+    "discordjs",
+    "discord",
+    "utils",
+    "typescript"
+  ],
+  "author": "Matt Strenk",
+  "license": "MIT",
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "@types/node-schedule": "^2.1.8",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "npm-check": "^6.0.1",
+    "prettier": "^3.6.2",
+    "tsup": "^8.5.0",
+    "typedoc": "^0.28.7",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@discordjs/builders": "^1.11.2",
+    "discord.js": "^14.21.0",
+    "express": "^5.1.0",
+    "node-schedule": "^2.1.1",
+    "stumper": "^2.0.0"
+  },
+  "files": [
+    "dist"
+  ]
+}
