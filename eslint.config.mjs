@@ -5,10 +5,10 @@ import typescriptEslintParser from "@typescript-eslint/parser";
 
 export default [
   {
-    ignores: ["dist/**", "dist-tests/**"], // Ignore the dist folder
+    ignores: ["dist/**", "*.config.ts"],
   },
   {
-    files: ["**/*.ts", "**/*.tsx"],
+    files: ["**/*.ts"],
     languageOptions: {
       parser: typescriptEslintParser,
       parserOptions: {

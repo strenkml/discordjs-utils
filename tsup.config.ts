@@ -1,11 +1,11 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from "tsup";
 
-export defineConfig({
-  entry: ['src/index.ts'],
-  format: ['cjs', 'esm'],
+export default defineConfig({
+  entry: ["src/index.ts"],
+  format: ["cjs", "esm"],
   dts: true,
   sourcemap: true,
   clean: true,
-  outDir: 'dist',
-  target: 'es2017'
+  outDir: "dist",
+  external: ["stumper", "node-schedule", "express", "discord.js", "@discordjs/builders"],
 });

@@ -1,23 +1,30 @@
 {
-  "name": "discordjs-utils",
+  "name": "@strenkml/discordjs-utils",
   "version": "1.0.0",
   "description": "Utils that I reuse a lot across my Discord Bots",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "build:clean": "rm -rf dist; pnpm run build",
+    "prepublishOnly": "pnpm run build:clean",
     "dev": "tsup --watch",
     "update": "pnpm exec npm-check -u",
     "depcheck": "pnpm exec npm-check",
-    "docs": "typedoc"
+    "lint": "pnpm exec eslint .",
+    "lint:fix": "pnpm exec eslint . --fix",
+    "format": "pnpm exec prettier --ignore-path .gitignore --write \"**/*.+(ts|json)\""
   },
   "keywords": [
     "discordjs",
@@ -48,8 +55,5 @@
     "express": "^5.1.0",
     "node-schedule": "^2.1.1",
     "stumper": "^2.0.0"
-  },
-  "files": [
-    "dist"
-  ]
+  }
 }

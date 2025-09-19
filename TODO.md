@@ -1,3 +1,0 @@
-- Add tsdoc comments
-- Fix onMessageCreate listener (need to figure out how to generalize it)
-- Publish to npm

@@ -1,34 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "rootDir": "./src",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
     "declaration": true,
+    "outDir": "dist",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@managers/*": [
-        "src/managers/*"
-      ],
-      "@models/*": [
-        "src/models/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ],
-      "@listeners/*": [
-        "src/listeners/*"
-      ],
-      "@types/*": [
-        "src/types/*"
-      ],
-    },
+      "@managers/*": ["src/managers/*"],
+      "@models/*": ["src/models/*"],
+      "@utils/*": ["src/utils/*"],
+      "@listeners/*": ["src/listeners/*"],
+      "@types/*": ["src/types/*"]
+    }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
