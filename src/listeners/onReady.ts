@@ -11,14 +11,14 @@ import { BotHealthManager } from "@managers/BotHealthManager";
 import { ContextMenuCommandManager } from "@managers/ContextMenuManager";
 import { SlashCommandManager } from "@managers/SlashCommandManager";
 
-export function onReady(client: Client, cb?: () => Promise<void>): void {
+export function onReady(client: Client, cb?: (client: Client) => Promise<void>): void {
   client.on("ready", async () => {
     readSlashCommands(client);
     readContextMenus(client);
     readTextCommands(client);
     readModals(client);
 
-    if (cb) await cb();
+    if (cb) await cb(client);
 
     const healthManager = BotHealthManager.getInstance();
     healthManager.setHealthy(true);
