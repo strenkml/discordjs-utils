@@ -7,5 +7,5 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   outDir: "dist",
-  external: ["stumper", "node-schedule", "express", "discord.js", "@discordjs/builders"],
+  external: ["discord.js", "stumper", "node-schedule"],
 });

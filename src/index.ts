@@ -1,6 +1,10 @@
 // Export all listeners
 export * from "@listeners/onInteractionCreate";
 export * from "@listeners/onReady";
+export * from "@listeners/onSigInt";
+export * from "@listeners/processErrorHandling";
+export * from "@listeners/discordErrorHandling";
+export * from "@listeners/discordConnectionHandling";
 
 // Export all managers
 export * from "@managers/BotHealthManager";

@@ -5,7 +5,7 @@ import typescriptEslintParser from "@typescript-eslint/parser";
 
 export default [
   {
-    ignores: ["dist/**", "*.config.ts"],
+    ignores: ["dist/**", "*.config.ts", "scripts/**"],
   },
   {
     files: ["**/*.ts"],

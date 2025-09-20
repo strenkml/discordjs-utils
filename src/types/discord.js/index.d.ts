@@ -1,8 +1,3 @@
-import type ModalMenu from "../../models/ModalMenu";
-import type SlashCommand from "../../models/SlashCommand";
-import type TextCommand from "../../models/TextCommand";
-import type { ContextMenuCommand } from "../../models/ContextMenuCommand";
-
 export {};
 
 declare module "discord.js" {

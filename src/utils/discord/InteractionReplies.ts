@@ -24,7 +24,7 @@ export class InteractionReplies {
   private ephemeral: boolean;
   private source: string;
 
-  private readonly defaults: Required<IInteractionReplieOptions>;
+  private readonly defaults: Required<IInteractionRepliesOptions>;
 
   constructor(
     interaction: CommandInteraction | ModalSubmitInteraction | undefined,
@@ -58,10 +58,10 @@ export class InteractionReplies {
     }
   }
 
-  async reply(content: string | IInteractionReplieOptions = {}): Promise<Message | undefined> {
+  async reply(content: string | IInteractionRepliesOptions = {}): Promise<Message | undefined> {
     if (!this.interaction) return;
 
-    let options: IInteractionReplieOptions;
+    let options: IInteractionRepliesOptions;
     if (typeof content === "string") {
       options = { content: content };
     } else {
@@ -132,7 +132,7 @@ export class InteractionReplies {
     this.interaction = interaction;
   }
 
-  private getDefaultOptions(input: IInteractionReplieOptions): Required<IInteractionReplieOptions> {
+  private getDefaultOptions(input: IInteractionRepliesOptions): Required<IInteractionRepliesOptions> {
     return {
       ephemeral: input.ephemeral ?? this.defaults.ephemeral,
       files: input.files ?? this.defaults.files,
@@ -142,7 +142,7 @@ export class InteractionReplies {
     };
   }
 
-  private checkOptions(options: Required<IInteractionReplieOptions>): boolean {
+  private checkOptions(options: Required<IInteractionRepliesOptions>): boolean {
     if (
       options.content == "" &&
       options.embeds.length == 0 &&
@@ -159,7 +159,7 @@ export function createReplies(source: string, ephemeral: boolean = false): Inter
   return new InteractionReplies(undefined, source, ephemeral);
 }
 
-export interface IInteractionReplieOptions {
+export interface IInteractionRepliesOptions {
   content?: string;
   embeds?: EmbedBuilder[];
   ephemeral?: boolean;

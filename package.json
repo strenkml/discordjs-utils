@@ -1,6 +1,6 @@
 {
   "name": "@strenkml/discordjs-utils",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Utils that I reuse a lot across my Discord Bots",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -16,10 +16,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
-    "build:clean": "rm -rf dist; pnpm run build",
-    "prepublishOnly": "pnpm run build:clean",
-    "dev": "tsup --watch",
+    "build": "pnpm exec tsup && pnpm exec tsx scripts/post-build.ts",
+    "prepublishOnly": "pnpm run build",
+    "dev": "pnpm exec tsup --watch",
     "update": "pnpm exec npm-check -u",
     "depcheck": "pnpm exec npm-check",
     "lint": "pnpm exec eslint .",
@@ -35,7 +34,20 @@
   "author": "Matt Strenk",
   "license": "MIT",
   "packageManager": "pnpm@10.13.1",
+  "peerDependencies": {
+    "discord.js": "^14.21.0",
+    "node-schedule": "^2.1.1",
+    "stumper": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "node-schedule": {
+      "optional": true
+    }
+  },
   "devDependencies": {
+    "discord.js": "^14.21.0",
+    "node-schedule": "^2.1.1",
+    "stumper": "^2.0.0",
     "@types/node": "^24.1.0",
     "@types/node-schedule": "^2.1.8",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
@@ -46,14 +58,8 @@
     "npm-check": "^6.0.1",
     "prettier": "^3.6.2",
     "tsup": "^8.5.0",
+    "tsx": "^4.20.5",
     "typedoc": "^0.28.7",
     "typescript": "^5.8.3"
-  },
-  "dependencies": {
-    "@discordjs/builders": "^1.11.2",
-    "discord.js": "^14.21.0",
-    "express": "^5.1.0",
-    "node-schedule": "^2.1.1",
-    "stumper": "^2.0.0"
   }
 }
