@@ -1,6 +1,6 @@
 import Stumper from "stumper";
 
-export default async (cb?: () => Promise<void>): Promise<void> => {
+export function onSigInt(cb?: () => Promise<void>): void {
   process.on("SIGINT", async (): Promise<void> => {
     Stumper.warning("Received SIGINT signal, shutting down...", "common:onSigInt");
 
@@ -8,4 +8,4 @@ export default async (cb?: () => Promise<void>): Promise<void> => {
 
     process.exit(0);
   });
-};
+}

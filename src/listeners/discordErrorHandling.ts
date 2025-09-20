@@ -1,7 +1,7 @@
 import { Client } from "discord.js";
 import Stumper from "stumper";
 
-export default (client: Client, advancedDebug: boolean = false): void => {
+export function discordErrorHandling(client: Client, advancedDebug: boolean = false): void {
   client.on("error", (error) => {
     Stumper.error(`${error.name}: ${error.message}`, "DiscordClientError");
   });
@@ -15,4 +15,4 @@ export default (client: Client, advancedDebug: boolean = false): void => {
       Stumper.debug(debug, "DiscordClientDebug");
     }
   });
-};
+}

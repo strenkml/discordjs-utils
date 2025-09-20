@@ -1,6 +1,6 @@
 import Stumper from "stumper";
 
-export default (uncaughtExceptionDB?: (err: Error) => Promise<void>): void => {
+export function processErrorHandling(uncaughtExceptionDB?: (err: Error) => Promise<void>): void {
   // Process UnhandledRejection
   process.on("unhandledRejection", (err, p) => {
     Stumper.caughtError(err, "Unhandled Exception");
@@ -25,4 +25,4 @@ export default (uncaughtExceptionDB?: (err: Error) => Promise<void>): void => {
     }
     Stumper.caughtWarning(warning, "Unhandled Warning");
   });
-};
+}

@@ -11,7 +11,7 @@ import { BotHealthManager } from "@managers/BotHealthManager";
 import { ContextMenuCommandManager } from "@managers/ContextMenuManager";
 import { SlashCommandManager } from "@managers/SlashCommandManager";
 
-export const onReady = (client: Client, cb?: () => Promise<void>): void => {
+export function onReady(client: Client, cb?: () => Promise<void>): void {
   client.on("ready", async () => {
     readSlashCommands(client);
     readContextMenus(client);
@@ -24,7 +24,7 @@ export const onReady = (client: Client, cb?: () => Promise<void>): void => {
     healthManager.setHealthy(true);
     Stumper.info("Bot Online!", "common:onReady:clientReady");
   });
-};
+}
 
 function readTextCommands(client: Client): void {
   const textCommands = TextCommandManager.getInstance().getCommands();

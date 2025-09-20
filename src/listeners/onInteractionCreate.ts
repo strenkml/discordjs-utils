@@ -14,7 +14,7 @@ import { ModalMenu } from "@models/ModalMenu";
 import { MessageContextMenuCommand, UserContextMenuCommand } from "@models/ContextMenuCommand";
 import { SlashCommand } from "@models/SlashCommand";
 
-export const onInteractionCreate = (client: Client, cb?: (interaction: Interaction) => Promise<void>): void => {
+export function onInteractionCreate(client: Client, cb?: (interaction: Interaction) => Promise<void>): void {
   client.on("interactionCreate", async (interaction: Interaction) => {
     if (interaction instanceof CommandInteraction && interaction.replied) {
       Stumper.error(
@@ -31,7 +31,7 @@ export const onInteractionCreate = (client: Client, cb?: (interaction: Interacti
 
     if (cb) await cb(interaction);
   });
-};
+}
 
 async function onSlashCommand(client: Client, interaction: ChatInputCommandInteraction): Promise<void> {
   if (!interaction.isCommand()) return;

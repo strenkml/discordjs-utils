@@ -1,6 +1,6 @@
 {
   "name": "@strenkml/discordjs-utils",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Utils that I reuse a lot across my Discord Bots",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -16,14 +16,14 @@
     "dist"
   ],
   "scripts": {
-    "build": "pnpm exec tsup && pnpm exec tsx scripts/post-build.ts",
+    "build": "tsup && tsx scripts/post-build.ts",
     "prepublishOnly": "pnpm run build",
-    "dev": "pnpm exec tsup --watch",
-    "update": "pnpm exec npm-check -u",
-    "depcheck": "pnpm exec npm-check",
-    "lint": "pnpm exec eslint .",
-    "lint:fix": "pnpm exec eslint . --fix",
-    "format": "pnpm exec prettier --ignore-path .gitignore --write \"**/*.+(ts|json)\""
+    "dev": "tsup --watch",
+    "update": "npm-check -u",
+    "depcheck": "npm-check",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(ts|json)\""
   },
   "keywords": [
     "discordjs",
