@@ -7,9 +7,11 @@ import {
 } from "discord.js";
 import Stumper from "stumper";
 import { ClientManager } from "@managers/ClientManager";
-import { Time } from "./Time";
 import { SlashCommandManager } from "@managers/SlashCommandManager";
 import { ContextMenuCommandManager } from "@managers/ContextMenuManager";
+import { ModalMenuManager } from "@managers/ModalMenuManager";
+import { TextCommandManager } from "@managers/TextCommandManager";
+import { withTimeout } from "./sleep";
 
 export async function readAndRegisterCommands(guildId: string, token: string): Promise<void> {
   const client = ClientManager.getInstance().client;
@@ -57,10 +59,55 @@ async function registerAllCommands(
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-async function withTimeout(promise: Promise<any>, ms: number): Promise<any> {
-  const timeout = new Promise((_, reject) =>
-    setTimeout(() => reject(new Error(`Request timed out after ${Time.getFormattedTimeFromMilliseconds(ms)}`)), ms)
-  );
-  return Promise.race([promise, timeout]);
+export function readTextCommands(client: Client): void {
+  const textCommands = TextCommandManager.getInstance().getCommands();
+  textCommands.forEach((command) => {
+    client.textCommands.set(`${command.prefix}${command.command}`, command);
+  });
+
+  Stumper.success(`Successfully loaded ${textCommands.size} text commands!`, "common:onReady:readTextCommands");
+}
+
+export function readModals(client: Client): void {
+  const modalMenus = ModalMenuManager.getInstance().getCommands();
+  modalMenus.forEach((command) => {
+    client.modals.set(command.name, command);
+  });
+
+  Stumper.success(`Successfully loaded ${client.modals.size} modals!`, "common:onReady:readModals");
+}
+
+export function readSlashCommands(client: Client): void {
+  const commands: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [];
+
+  const slashCommandManager = SlashCommandManager.getInstance();
+  const slashCommands = slashCommandManager.getCommands();
+  slashCommands.forEach((command) => {
+    commands.push(command.data.toJSON());
+    client.slashCommands.set(command.name, command);
+  });
+
+  slashCommandManager.setRegistrationInfo(commands);
+  Stumper.success(`Successfully loaded ${slashCommands.size} slash commands!`, "common:onReady:readSlashCommands");
+}
+
+export function readContextMenus(client: Client): void {
+  const menus: RESTPostAPIContextMenuApplicationCommandsJSONBody[] = [];
+
+  const contextMenuManager = ContextMenuCommandManager.getInstance();
+  const contextMenus = contextMenuManager.getCommands();
+  contextMenus.forEach((menu) => {
+    client.contextMenus.set(menu.name, menu);
+    menus.push(menu.data.toJSON());
+  });
+
+  contextMenuManager.setRegistrationInfo(menus);
+  Stumper.success(`Successfully loaded ${client.contextMenus.size} context menus!`, "common:onReady:readContextMenus");
+}
+
+export function readAllCommands(client: Client): void {
+  readSlashCommands(client);
+  readContextMenus(client);
+  readTextCommands(client);
+  readModals(client);
 }
